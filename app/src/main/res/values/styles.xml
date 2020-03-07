@@ -1,0 +1,10 @@
+<resources>
+
+    <style name="Widget" />
+
+    <style name="Widget.ReadItLater" />
+
+    <style name="Widget.ReadItLater.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:backgroundTint">?attr/colorPrimary</item>
+    </style>
+</resources>
