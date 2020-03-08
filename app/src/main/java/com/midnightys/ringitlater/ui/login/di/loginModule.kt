@@ -11,5 +11,5 @@ import org.koin.dsl.module
 val loginModule = module {
     factory { LoginUseCase(get()) }
 
-    viewModel { LoginViewModel() }
+    viewModel { LoginViewModel(get()) }
 }

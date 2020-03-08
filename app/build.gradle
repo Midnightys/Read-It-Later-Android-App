@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -32,8 +34,8 @@ android {
     buildFeatures {
         compose true
     }
-    viewBinding {
-        enabled = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -55,7 +57,6 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:1.1.1"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 
-    def nav_version = "2.3.0-alpha03"
     // Kotlin
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
@@ -72,7 +73,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:19.2.0'
     implementation 'com.google.firebase:firebase-firestore:21.4.1'
     implementation 'com.google.firebase:firebase-firestore-ktx:21.4.1'
-    implementation "com.firebaseui:firebase-ui-auth:4.3.2"
+    implementation 'com.firebaseui:firebase-ui-auth:6.2.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     def koin_version = "2.1.3"
     implementation "org.koin:koin-core:$koin_version"
@@ -91,4 +93,14 @@ dependencies {
     implementation "com.github.Midnightys.Toolbox:status:$toolbox_version"
     implementation "com.github.Midnightys.Toolbox:firestore-flow:$toolbox_version"
     implementation "com.github.Midnightys.Toolbox:use-case:$toolbox_version"
+
+    // FlowBinding
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-android:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-core:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-lifecycle:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-navigation:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-preference:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-recyclerview:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-viewpager2:${flowbinding_version}"
+    implementation "io.github.reactivecircus.flowbinding:flowbinding-material:${flowbinding_version}"
 }

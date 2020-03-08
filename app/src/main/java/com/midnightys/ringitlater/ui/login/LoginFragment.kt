@@ -7,19 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
+import com.google.firebase.auth.FirebaseAuth
+import com.midnightys.ringitlater.BuildConfig
 import com.midnightys.ringitlater.R
 import com.midnightys.ringitlater.databinding.LoginFragmentBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 class LoginFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = LoginFragment()
-    }
-
     private val viewModel: LoginViewModel by viewModel()
     private lateinit var binding: LoginFragmentBinding
 
@@ -33,15 +32,20 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupLoginButton()
+    }
 
+    private fun setupLoginButton() {
+        binding.loginButton.setOnClickListener { showLoginDialog() }
     }
 
     val requestCodeLogIn = 999
-    fun login() {
+    private fun showLoginDialog() {
         val providers = listOf(AuthUI.IdpConfig.GoogleBuilder().build())
         startActivityForResult(
             AuthUI.getInstance()
                 .createSignInIntentBuilder()
+                .setIsSmartLockEnabled(!BuildConfig.DEBUG /* credentials */, true /* hints */)
                 .setAvailableProviders(providers)
                 .setTheme(R.style.Theme_RingItLater)
                 .build()
@@ -50,11 +54,11 @@ class LoginFragment : Fragment() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == requestCodeLogIn) {
             val response = IdpResponse.fromResultIntent(data)
             if (resultCode == Activity.RESULT_OK) {
-                Timber.d("Log in success. user provider id: ${response?.user?.providerId}")
+                viewModel.login()
+                Timber.d("Log in success. user provider id: ${FirebaseAuth.getInstance().currentUser?.uid}")
             } else {
                 Timber.w("Google Sign in error code:${response?.error?.errorCode}: ${response?.error?.localizedMessage}")
                 Timber.e(response?.error)
