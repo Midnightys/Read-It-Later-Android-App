@@ -1,6 +1,7 @@
 package com.midnightys.ringitlater.data
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.midnightys.ringitlater.model.User
 import com.midnightys.status.*
@@ -19,6 +20,7 @@ interface UserRepositoryProvider {
     fun getFirebaseUserOnce(): Flow<Status<FirebaseUser>>
     fun getUserOnce(): Flow<Status<User>>
     fun createNewUserDocument(): Flow<Status<Unit>>
+    fun getUserDocument(): Flow<Status<DocumentReference>>
 }
 
 class UserRepository(private val auth: FirebaseAuth, private val firestore: FirebaseFirestore) :
@@ -30,14 +32,13 @@ class UserRepository(private val auth: FirebaseAuth, private val firestore: Fire
         else emit(Failure(UserIsNullException()))
     }
 
-    override fun getUserOnce(): Flow<Status<User>> = getFirebaseUserOnce().map {
-        it.flatMap {
+    override fun getUserOnce(): Flow<Status<User>> = getFirebaseUserOnce().flatMapConcat {
+        if (it is Success)
             firestore
                 .collection(USER_COLLECTION)
-                .document(it.uid)
-                .toSingle<User>()
-                .statusSingle()
-        }
+                .document(it.result.uid)
+                .toSingle()
+        else flow { emit(it as Status<User>) }
     }
 
     override fun createNewUserDocument(): Flow<Status<Unit>> {
@@ -46,9 +47,15 @@ class UserRepository(private val auth: FirebaseAuth, private val firestore: Fire
             firestore
                 .collection(USER_COLLECTION)
                 .document(user.uid)
-                .set(User(user.uid, user.email, user.photoUrl?.toString()))
+                .set(User(user.uid, user.displayName ?: "", user.email, user.photoUrl?.toString()))
                 .addOnTaskStatusChangeFlow()
         } ?: statusFlow { Failure(UserIsNullException()) }
+    }
+
+    override fun getUserDocument(): Flow<Status<DocumentReference>> = getUserOnce().mapStatus {
+        firestore
+            .collection(USER_COLLECTION)
+            .document(it.id)
     }
 
     companion object {

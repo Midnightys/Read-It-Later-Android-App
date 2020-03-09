@@ -13,6 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RingItLater">
         <activity
+            android:name=".ui.receive.ReceiveArticleActivity"
+            android:label="@string/title_activity_receive_article">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.main.MainActivity"
             android:label="@string/title_activity_main">
             <intent-filter>
@@ -21,6 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

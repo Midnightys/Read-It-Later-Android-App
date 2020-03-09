@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.midnightys.common.onEachEvent
 import com.midnightys.ringitlater.R
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 class SplashFragment : Fragment() {
 
@@ -30,9 +32,18 @@ class SplashFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-//        viewModel.navigateTo.onEachEvent {
-//            findNavController().navigate(it)
-//        }.launchIn(viewLifecycleOwner.lifecycleScope)
+        bindViewModel()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.determineDirection()
+    }
+
+    private fun bindViewModel() {
+        viewModel.navigateTo.onEachEvent {
+            Timber.d("navigateTo: $it")
+            findNavController().navigate(it)
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 }

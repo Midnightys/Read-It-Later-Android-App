@@ -9,5 +9,21 @@
             @style/Widget.MaterialComponents.BottomAppBar.Colored
         </item>
         <item name="buttonStyle">@style/Widget.ReadItLater.Button</item>
+        <item name="shapeAppearanceSmallComponent">
+            @style/ShapeAppearance.RingItLater.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.RingItLater.MediumComponent
+        </item>
+        <item name="materialCardViewStyle">@style/Widget.ReadItLater.CardView</item>
+        <item name="textAppearanceHeadline1">@style/TextAppearance.RingItLater.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.RingItLater.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.RingItLater.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.RingItLater.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.RingItLater.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.RingItLater.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.RingItLater.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.RingItLater.Subtitle2</item>
+        <item name="textAppearanceCaption">@style/TextAppearance.RingItLater.Caption</item>
     </style>
 </resources>

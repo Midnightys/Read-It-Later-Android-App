@@ -7,4 +7,8 @@
     <style name="Widget.ReadItLater.Button" parent="Widget.MaterialComponents.Button">
         <item name="android:backgroundTint">?attr/colorPrimary</item>
     </style>
+
+    <style name="Widget.ReadItLater.CardView" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">1dp</item>
+    </style>
 </resources>

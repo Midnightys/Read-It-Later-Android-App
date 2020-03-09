@@ -1,10 +1,6 @@
 <resources>
-    <string name="app_name">RingItLater</string>
-    <string name="title_activity_main2">My Compose App</string>
-    <string name="title_activity_main">MainActivity</string>
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
+    <string name="app_name">Ring It Later</string>
+    <string name="title_activity_main">Read it later</string>
+    <string name="title_activity_receive_article">儲存文章</string>
+    <string name="greet_user">Hello %s</string>
 </resources>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="TextAppearance" />
+
+    <style name="TextAppearance.RingItLater">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:fontFamily">@font/merriweather_light</item>
+        <item name="fontFamily">@font/merriweather_light</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:fontFamily">@font/merriweather_light</item>
+        <item name="fontFamily">@font/merriweather_light</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:fontFamily">@font/merriweather_bold</item>
+        <item name="fontFamily">@font/merriweather_bold</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:fontFamily">@font/merriweather_bold</item>
+        <item name="fontFamily">@font/merriweather_bold</item>
+    </style>
+
+    <style name="TextAppearance.RingItLater.Caption" parent="TextAppearance.MaterialComponents.Caption">
+        <item name="android:fontFamily">@font/merriweather</item>
+        <item name="fontFamily">@font/merriweather</item>
+    </style>
+</resources>
